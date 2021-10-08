@@ -21,7 +21,7 @@ The default installation path is $PERM/extractGribConfig/$EXP or $HOME/extractGr
         $~> mkdir build
         $~> cd build
         $~> (
-	$~>   EXP=harmonie-experiment-name
+        $~>   EXP=harmonie-experiment-name
         $~>   cmake ..
         $~> )
         $~>     or
