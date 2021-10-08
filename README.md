@@ -33,14 +33,14 @@ The default installation path is $PERM/extractGribConfig/$EXP or $HOME/extractGr
         ```
 - this will create your local file structure:
 	```
-	etc/griblists/cccc/
-	etc/namelist_inc/cccc/
-	etc/paramlists/cccc/
+	share/griblists/cccc/
+	share/namelist_inc/cccc/
+	share/paramlists/cccc/
 	```
  	under /path/to/installation/$EXP
 
 - [Populate](#setup) with parameter lists, sub-domains/projections, griblists
-- Create environment variable USERAREA pointing to your `etc/griblists` (Default is `$PERM/extractGrib/$EXP/etc/griblists`)
+- Create environment variable USERAREA pointing to your `share/griblists` (Default is `$PERM/extractGrib/$EXP/share/griblists`)
 
 ### Workflow
 
@@ -55,22 +55,22 @@ The default installation path is $PERM/extractGribConfig/$EXP or $HOME/extractGr
 
 ### Parameter lists
 
-- `${bindir}/etc/paramlists/param_source.cfg` knows where the data is to be found
+- `${bindir}/share/paramlists/param_source.cfg` knows where the data is to be found
 
 - You need to use [`${bindir}/bin/grib_paramlist.sh`](#grib_paramlistsh) to extract a list of parameters from an existing grib file
 - Or you can create one by hand.
-- These should be saved as some `etc/paramlists/cccc/<param>.list` or `etc/paramlists/<param>.list`
+- These should be saved as some `share/paramlists/cccc/<param>.list` or `share/paramlists/<param>.list`
 
 ### Parameter namelists
 
-- Parameter namelist fragments are stored in `etc/namelist_inc/cccc/30-<paramlist>_P-b.inc` or `etc/namelist_inc/30-<paramlist>_P-b.inc`
+- Parameter namelist fragments are stored in `share/namelist_inc/cccc/30-<paramlist>_P-b.inc` or `share/namelist_inc/30-<paramlist>_P-b.inc`
 
 - You need to use [`${bindir}/bin/do_paramset.sh`](#do_paramsetsh) to create the fragments
 - Or you can use [`${bindir}/bin/read_paramlist.sh`](#read_paramlistsh) to see an individual fragment
 
 ### Sub-domains and Thinning
 
-- Subdomain namelist fragments are stored in `etc/namelist_inc/cccc/20-<proj>.inc` or `etc/namelist_inc/20-<proj>.inc`
+- Subdomain namelist fragments are stored in `share/namelist_inc/cccc/20-<proj>.inc` or `share/namelist_inc/20-<proj>.inc`
 
 - Use [`${bindir}/bin/make_subdomain.sh`](#make_subdomainsh) to construct a sub-domain/thinned namelist fragment.
 - Or you can use [`${bindir}/bin/grib_proj.sh`](#grib_projsh) to extract the fragment from an existing grib file
@@ -78,9 +78,9 @@ The default installation path is $PERM/extractGribConfig/$EXP or $HOME/extractGr
 ### Griblists
 
 - Griblists define the set of namelist fragments to be used for a specific product
-- Griblists are stored in `etc/griblists/cccc/control.list`, `etc/griblists/cccc/standing.list` and `etc/griblists/cccc/user.list`
+- Griblists are stored in `share/griblists/cccc/control.list`, `share/griblists/cccc/standing.list` and `share/griblists/cccc/user.list`
 - control.list is used only for extraction from the control member.  standing.list and user.list are extracted from all ensemble members including control
-- [Samples](#griblist-samples) are in `${bindir}/etc/griblists/`
+- [Samples](#griblist-samples) are in `${bindir}/share/griblists/`
 
 ### Extraction
 
@@ -95,7 +95,7 @@ The default installation path is $PERM/extractGribConfig/$EXP or $HOME/extractGr
 
 	Extracts requested dataset(s) from Harmonie FA outputs using user-supplied request lists.
 
-	-a <USERAREA> 		Sets the source area for user lists (currently: $HOME/hm_home/extractGrib/etc/griblists)
+	-a <USERAREA> 		Sets the source area for user lists (currently: $HOME/hm_home/extractGrib/share/griblists)
         -d <DTG>		Sets the DateTimeGroup for the forecast       (currently: 2021061006)
         -dm <DOMAIN>		Sets the Domain name for the forecast         (currently: IRELAND25_090)
         -em <ENSMBR>		Sets the Ensemble Member for the forecast     (currently: -1)
@@ -256,7 +256,7 @@ The values:
 - nlon,nlat specify the number of gridpoints
 - south,west specify the SW corner of the (sub-)domain.
 
-This output should be saved to `etc/namelist_inc/cccc/20-<proj>.inc` or `etc/namelist_inc/20-<proj>.inc` where 'proj' is the name of the projection to be used in a [griblist](#griblists)
+This output should be saved to `share/namelist_inc/cccc/20-<proj>.inc` or `share/namelist_inc/20-<proj>.inc` where 'proj' is the name of the projection to be used in a [griblist](#griblists)
 
 #### grib_proj.sh
 
@@ -302,7 +302,7 @@ The values:
 - nlon,nlat specify the number of gridpoints
 - south,west specify the SW corner of the (sub-)domain.
 
-This output should be saved to `etc/namelist_inc/cccc/20-<proj>.inc` or `etc/namelist_inc/20-<proj>.inc` where 'proj' is the name of the projection to be used in a [griblist](#griblists)
+This output should be saved to `share/namelist_inc/cccc/20-<proj>.inc` or `share/namelist_inc/20-<proj>.inc` where 'proj' is the name of the projection to be used in a [griblist](#griblists)
 
 #### read_paramlist.sh
 
@@ -325,7 +325,7 @@ This output should be saved to `etc/namelist_inc/cccc/20-<proj>.inc` or `etc/nam
 
 produces output of the form:
 
-	bin/read_paramlist.sh -b -P /data/cdaly/cdtemp/bullnwpdata/etc/paramlists/eidb/pp.list 
+	bin/read_paramlist.sh -b -P /data/cdaly/cdtemp/bullnwpdata/share/paramlists/eidb/pp.list 
 	readkey%shortname='tcc',
 	readkey%levtype='heightAboveGround',
 	readkey%level=2,
@@ -338,7 +338,7 @@ or:
 	readkey%tri=0,
 or:
 
-	bin/read_paramlist.sh -b -B /data/cdaly/cdtemp/bullnwpdata/etc/paramlists/eidb/pp.list 
+	bin/read_paramlist.sh -b -B /data/cdaly/cdtemp/bullnwpdata/share/paramlists/eidb/pp.list 
 	readkey%shortname='cb','ct','cwat_cond','icei2','icei2','icei2','icei2','lgt','mld','prtp','pscw','pstbc','pstb','tcc','vis',
 	readkey%levtype='entireAtmosphere','entireAtmosphere','entireAtmosphere','heightAboveGround','heightAboveGround','heightAboveGround','heightAboveGround','entireAtmosphere','heightAboveGround','heightAboveGround','heightAboveGround','heightAboveGround','heightAboveGround','heightAboveGround','heightAboveGround',
 	readkey%level=0,0,0,305,610,914,1524,0,0,0,0,0,0,2,0,
@@ -370,8 +370,8 @@ This runs `${bindir}/bin/read_paramlist.sh` with the various switches necessary 
 
 Typical usage is:
 
-	bin/do_paramset.sh -b -o etc/namelist_inc/cccc/ etc/paramlists/cccc/<param>.list
-	bin/do_paramset.sh -b -o etc/namelist_inc/ etc/paramlists/<param>.list
+	bin/do_paramset.sh -b -o share/namelist_inc/cccc/ share/paramlists/cccc/<param>.list
+	bin/do_paramset.sh -b -o share/namelist_inc/ share/paramlists/<param>.list
 
 #### Griblist Samples
 
@@ -385,7 +385,7 @@ Typical usage is:
 	# -T implies store to memory.
 	#
 	# A grib_extension is used to generate a file of the form: fcYYYYMMDDHH+SSS.grib_extension
-	# Parameter list and Projection/sub-domain entries must exist in etc/namelist_inc/centre/
+	# Parameter list and Projection/sub-domain entries must exist in share/namelist_inc/centre/
 	#grib_extension     -C centre -g grib1|2 -k packingType  -p Parameter list -r Projection|sub-domain
 	MEMORY       -C knmi -T             -p en_B-p
 	grib2_enIoI  -C knmi -g 2 -k ccsds  -p en_B-b -r IofIE
@@ -396,22 +396,22 @@ In the sample above, the following steps occur:
 
 1. Input datafiles are read into memory
 
-2. The [parameter](#parameter-lists) file `etc/namelist_inc/knmi/30-en_B-p.inc` is used to to generate a `pppkey%...` namelist to be stored in memory 
+2. The [parameter](#parameter-lists) file `share/namelist_inc/knmi/30-en_B-p.inc` is used to to generate a `pppkey%...` namelist to be stored in memory 
 
 	MEMORY       -C knmi -T             -p en_B-p
 
-	If the file `etc/namelist_inc/knmi/30-en_B-p.inc` does not exist the file `etc/namelist_inc/30-en_B-p.inc` will be used if it exists. 
+	If the file `share/namelist_inc/knmi/30-en_B-p.inc` does not exist the file `share/namelist_inc/30-en_B-p.inc` will be used if it exists. 
 	This applies to parameter files and to projection files.
 
-3. The [parameter](#parameter-lists) file `etc/namelist_inc/knmi/30-en_B-b.inc` is used to to generate a `readkey%...` namelist to be reprojected using [projection](#sub-domain-and-thinning) file `etc/namelist_inc/knmi/20-IofIE.inc` (Island of Ireland subdomain at standard model resolution) and written as 'grib2' using packingType 'ccsds' to output file: `knmi/fcYYYYMMDDHH+SSSgrib2_enIoI`
+3. The [parameter](#parameter-lists) file `share/namelist_inc/knmi/30-en_B-b.inc` is used to to generate a `readkey%...` namelist to be reprojected using [projection](#sub-domain-and-thinning) file `share/namelist_inc/knmi/20-IofIE.inc` (Island of Ireland subdomain at standard model resolution) and written as 'grib2' using packingType 'ccsds' to output file: `knmi/fcYYYYMMDDHH+SSSgrib2_enIoI`
 
 	grib2_enIoI  -C knmi -g 2 -k ccsds  -p en_B-b -r IofIE
 
-4. The [parameter](#parameter-lists) file `etc/namelist_inc/knmi/30-en_B-p.inc` is used to to generate a `pppkey%...` namelist to be stored in memory 
+4. The [parameter](#parameter-lists) file `share/namelist_inc/knmi/30-en_B-p.inc` is used to to generate a `pppkey%...` namelist to be stored in memory 
 
 	MEMORY       -C knmi -T             -p en_B-p
 
-5. The [parameter](#parameter-lists) file `etc/namelist_inc/knmi/30-en_B-b.inc` is used to to generate a `readkey%...` namelist to be reprojected using [projection](#sub-domain-and-thinning) file `etc/namelist_inc/knmi/20-IRELAND25-10k.inc` (full domain @10km resolution) and written as 'grib2' using packingType 'ccsds' to output file: `knmi/fcYYYYMMDDHH+SSSgrib2_enIoI`
+5. The [parameter](#parameter-lists) file `share/namelist_inc/knmi/30-en_B-b.inc` is used to to generate a `readkey%...` namelist to be reprojected using [projection](#sub-domain-and-thinning) file `share/namelist_inc/knmi/20-IRELAND25-10k.inc` (full domain @10km resolution) and written as 'grib2' using packingType 'ccsds' to output file: `knmi/fcYYYYMMDDHH+SSSgrib2_enIoI`
 
 	grib2_en_10k -C knmi -g 2 -k ccsds  -p en_B-b -r IRELAND25-10k
 

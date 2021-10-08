@@ -8,7 +8,7 @@
 # -T implies store to memory.
 #
 # A grib_extension is used to generate a file of the form: fcYYYYMMDDHH+SSS.grib_extension
-# Parameter list and Projection/sub-domain entries must exist in etc/namelist_inc/centre/
+# Parameter list and Projection/sub-domain entries must exist in share/namelist_inc/centre/
 #grib_extension     -C centre -g grib1|2 -k packingType  -p Parameter list -r Projection|sub-domain
 #grib2_ie     -C eidb -g 2 -k ccsds             -x exclude-hybrid
 memory       -C eidb -T             -p rt_B-p
