@@ -1,0 +1,17 @@
+# Synoptic scale parameter set, pressure, thickness, wind, cloud, precip
+shortName:typeOfLevel:tri:level
+hcc:heightAboveGround:0:0
+lcc:heightAboveGround:0:0
+mcc:heightAboveGround:0:0
+prate:heightAboveGround:0:0
+pres:heightAboveSea:0:0
+pt:isobaricInhPa:0:500,850,1000
+q:isobaricInhPa:0:500,850,1000
+r:isobaricInhPa:0:500,850,1000
+tcc:heightAboveGround:0:0
+t:isobaricInhPa:0:500,850,1000
+tp:heightAboveGround:4:0
+u:isobaricInhPa:0:500,850,1000
+v:isobaricInhPa:0:500,850,1000
+w:isobaricInhPa:0:500,850,1000
+z:isobaricInhPa:0:500,850,1000

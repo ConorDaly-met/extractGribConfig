@@ -1,0 +1,9 @@
+#
+#69:of:69:messages:in:fc2021061512+012grib2_ml
+#69:of:69:total:messages:in:1:files
+#fc2021061512+012grib2_ml
+shortName:typeOfLevel:tri:level
+t:hybrid:0:1-20,25,30,35,40,45,51-65
+u:hybrid:0:1-20,25,30,35,40,45,51-65
+v:hybrid:0:1-20,25,30,35,40,45,51-65
+w:hybrid:0:1-20,25,30,35,40,45,51-65

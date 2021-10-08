@@ -1,0 +1,25 @@
+# Standing orders list from PFHARM files
+#
+# This file may not contain blank lines
+#
+# MEMORY keyword postprocesses data into memory.  This is used later to extract post-processed data to file.
+# A MEMORY keyword must precede the first extraction of postprocessed data to file
+#MEMORY		-C centre	-T	-p Parameter list
+# -T implies store to memory.
+#
+# A grib_extension is used to generate a file of the form: fcYYYYMMDDHH+SSS.grib_extension
+# Parameter list and Projection/sub-domain entries must exist in etc/namelist_inc/centre/
+#grib_extension     -C centre -g grib1|2 -k packingType  -p Parameter list -r Projection|sub-domain
+#grib2_ie     -C eidb -g 2 -k ccsds             -x exclude-hybrid
+grib2_ml     -C eidb -g 2 -k ccsds  -p ml_B-b
+MEMORY       -C eidb -T             -p pp_B-p
+grib2_pp     -C eidb -g 2 -k ccsds  -p pp_B-b
+memory       -C eidb -T             -p ie_B-p
+grib2_ie     -C eidb -g 2 -k ccsds  -p ie_B-b
+grib2_IE-FIR-avi   -C eidb -g 2 -k ccsds  -p ml_aviation_B-b -r IRELAND-FIR
+#memory       -C eidb -T             -p rt_B-p
+#grib_rt      -C eidb      -k simple -p rt_B-b
+memory       -C eidb -T             -p ep_B-p
+grib2_ep     -C eidb -g 2 -k ccsds  -p ep_B-b -r IRELAND25
+memory       -C eidb -T             -p hy_B-p
+grib_hy      -C eidb -g 1 -k simple -p hy_B-b -r IRELAND25

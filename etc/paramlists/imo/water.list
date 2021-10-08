@@ -1,0 +1,16 @@
+# Input data for Water Surge models
+#
+#/lustre1/operation/prodharm/scratch/hm_home/trunk_r17057_update/archive/2021/09/20/06/mbr000/HA40_L25_202109200600_00100_GB
+shortName:typeOfLevel:tri:level
+grad:heightAboveGround:4:0
+lsm:heightAboveGround:0:0
+lwavr:heightAboveGround:4:0
+pres:heightAboveSea:0:0
+tcc:heightAboveGround:0:0
+td:heightAboveGround:0:2
+t:heightAboveGround:0:2
+tp:heightAboveGround:4:0
+uflx:heightAboveGround:0:760,770
+u:heightAboveGround:0:10
+vflx:heightAboveGround:0:760,770
+v:heightAboveGround:0:10

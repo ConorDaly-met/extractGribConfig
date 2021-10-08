@@ -1,0 +1,7 @@
+# Sample basic parameter list for dmi
+#dmi/HARM-NEA.06.012.FRACLAND.grib
+shortName:typeOfLevel:tri:level
+lsm:heightAboveGround:0:0
+t:heightAboveGround:0:0,2
+u:heightAboveGround:0:10
+v:heightAboveGround:0:10

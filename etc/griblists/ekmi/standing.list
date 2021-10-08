@@ -1,0 +1,30 @@
+# Standing orders list for ekmi files
+#
+# This demonstrates the use of gl reprojection, sub-domain extraction and thinning.
+#
+# MEMORY keyword postprocesses data into memory.  This is used later to extract post-processed data to file.
+# A MEMORY keyword must precede the first extraction of postprocessed data to file
+#MEMORY		-C centre	-T	-p Parameter list
+# -T implies store to memory.
+#
+# A grib_extension is used to generate a file of the form: fcYYYYMMDDHH+SSS.grib_extension
+# Parameter list and Projection/sub-domain entries must exist in etc/namelist_inc/centre/
+#grib_extension     -C centre -g grib1|2 -k packingType  -p Parameter list -r Projection|sub-domain
+#
+# Existing ekmi domain (-r dmi)
+#grib2_dmi -m -C ekmi -g 1 -k ccsds  -p basic_B-b -r dmi # This does not work yet
+# 
+# Current Denmark domain rotated (-r dmi)
+grib2_dmi           -C ekmi -g 2 -k ccsds  -p basic_B-b -r dmi          # Rotated sub-domain
+# 
+# Denmark FIR domain thinned to 10km resolution (-r dmi_FIR_10k)
+grib2_dmi_avi_10k   -C ekmi -g 2 -k ccsds   -p aviation_B-b -r dmi_FIR_10k # Aviation parameters
+grib1_dmi_avi       -C ekmi -g 1 -k simple  -p basic_B-b    -r dmi_FIR     # 4 basic parameters
+# 
+# Denmark land area sub-domain at full resolution extracted from (-r dmi_land)
+MEMORY              -C ekmi      -T        -p en_B-p               # Extract postprocessed parameters into memory.
+grib2_dmi_land_en   -C ekmi -g 2 -k ccsds  -p en_B-b    -r dmi_land # A suite of surface parameters
+grib1_dmi_ship      -C ekmi -g 1 -k ccsds  -p basic_B-b -r dmi_ship
+grib1_dmi_ship_10k  -C ekmi -g 1 -k ccsds  -p basic_B-b -r dmi_ship_10k
+# Full domain, 20km resolution at synoptic scale
+grib2_UWC-synop_20k -C ekmi -g 2 -k ccsds  -p synop-scale_B-b -r DINI25a-20k

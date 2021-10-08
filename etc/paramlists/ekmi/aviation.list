@@ -1,0 +1,6 @@
+# Sample Aviation parameter list for dmi
+# Expects hybrid levels 20-30 only
+shortName:typeOfLevel:tri:level
+t:hybrid:0:20-30
+u:hybrid:0:20-30
+v:hybrid:0:20-30

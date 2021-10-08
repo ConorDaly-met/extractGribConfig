@@ -1,0 +1,25 @@
+# Standing orders list for imo files
+#
+# This file may not contain blank lines
+#
+# MEMORY keyword postprocesses data into memory.  This is used later to extract post-processed data to file.
+# A MEMORY keyword must precede the first extraction of postprocessed data to file
+#MEMORY		-C centre	-T	-p Parameter list
+# -T implies store to memory.
+#
+# A grib_extension is used to generate a file of the form: fcYYYYMMDDHH+SSS.grib_extension
+# Parameter list and Projection/sub-domain entries must exist in etc/namelist_inc/centre/
+#grib_extension     -C centre -g grib1|2 -k packingType  -p Parameter list -r Projection|sub-domain
+MEMORY       -C imo -T             -p allparm_B-p
+MEMORY       -C imo -T             -p ml_aviation_B-p
+MEMORY       -C imo -T             -p water_B-p
+MEMORY       -C imo -T             -p synop-scale_B-p
+# 2.5 km grid for aviation
+grb_hm25km_avi  -C imo -g 2 -k simple  -p ml_aviation_B-b  -r HM-25km
+# 750m Iceland grid
+grb_hm750m      -C imo -g 2            -p allparm_B-b      -r HM-750m
+# Greenland grid sample awaiting igb domain  This will be mostly empty
+grb_igb25km     -C imo -g 2 -k simple  -p water_B-b        -r IGB-25km-out
+# Full domain, 20km resolution at synoptic scale
+grb_dini25a20km -C imo -g 2 -k simple -p synop-scale_B-b   -r DINI25a-20k
+
