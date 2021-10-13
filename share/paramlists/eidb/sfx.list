@@ -1,8 +1,9 @@
 #
-10u:heightAboveGround:0:10
-10v:heightAboveGround:0:10
 #212:of:212:messages:in:/lustre1/e-suite/testeire/scratch/hm_home/harmonEPS43h22_01/archive/2021/06/16/00/fc2021061600+003grib_sfx
 #212:of:212:total:messages:in:1:files
+#/lustre1/e-suite/testeire/scratch/hm_home/harmonEPS43h22_01/archive/2021/06/16/00/fc2021061600+003grib_sfx
+10u:heightAboveGround:0:10
+10v:heightAboveGround:0:10
 2t:heightAboveGround:0:2
 al:heightAboveGround:0:800
 al:heightAboveGround:0:830
@@ -45,7 +46,6 @@ lhf:heightAboveGround:4:0
 lhf:heightAboveGround:4:760
 lhf:heightAboveGround:4:770
 lhf:heightAboveGround:4:800
-/lustre1/e-suite/testeire/scratch/hm_home/harmonEPS43h22_01/archive/2021/06/16/00/fc2021061600+003grib_sfx
 mn2t6:heightAboveGround:4:2
 msl:heightAboveGround:0:760
 msl:heightAboveGround:0:770
