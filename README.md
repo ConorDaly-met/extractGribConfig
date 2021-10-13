@@ -21,7 +21,7 @@ The default installation path is $HOME/extractGribConfig/$EXP
         $~> mkdir build
         $~> cd build
         $~> (
-        $~>   EXP=harmonie-experiment-name
+        $~>   export EXP=harmonie-experiment-name
         $~>   cmake ..
         $~> )
         $~>     or
