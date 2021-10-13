@@ -1,1 +1,2 @@
-share/**/*.inc text
+share/namelist_inc/*.inc text
+share/namelist_inc/*/*.inc text
