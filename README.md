@@ -14,7 +14,7 @@ Met Éireann
 
 ### Installation
 
-The default installation path is $PERM/extractGribConfig/$EXP or $HOME/extractGribConfig/$EXP if $PERM is not set 
+The default installation path is $HOME/extractGribConfig/$EXP
 
 - `git clone` this repo
 -       ```
@@ -40,7 +40,7 @@ The default installation path is $PERM/extractGribConfig/$EXP or $HOME/extractGr
  	under /path/to/installation/$EXP
 
 - [Populate](#setup) with parameter lists, sub-domains/projections, griblists
-- Create environment variable USERAREA pointing to your `share/griblists` (Default is `$PERM/extractGrib/$EXP/share/griblists`)
+- Create environment variable USERAREA pointing to your `share/griblists` (Default is `$HOME/extractGrib/$EXP/share/griblists`)
 
 ### Workflow
 
