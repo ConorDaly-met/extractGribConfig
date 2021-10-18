@@ -15,6 +15,7 @@ Met Éireann
 ### Installation
 
 The default installation path is $HOME/extractGribConfig/$EXP
+but on ecgate it needs to be /hpc$HOME/extractGribConfig/$EXP
 
 - `git clone` this repo
 -       ```
