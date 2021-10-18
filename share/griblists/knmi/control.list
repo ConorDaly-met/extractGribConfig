@@ -14,7 +14,7 @@ MEMORY       -C knmi -T             -p allparm_B-p
 MEMORY       -C knmi -T             -p levels_B-p
 MEMORY       -C knmi -T             -p water_B-p
 #5 km grid for 3D plotting)
-GB_HA43_L50  -C knmi -g 1 -k simple  -p levels_B-b  -r HA43_L50
+#GB_HA43_L50  -C knmi -g 1 -k simple  -p levels_B-b  -r HA43_L50
 #0.05 degrees rotated lat-lon, all params and levels)
 GB_HA43_N55  -C knmi -g 2 -k ccsds   -p postp_coarse_B-b -r HA43_N55
 #2.5 km regular lat-lon grid close to NL, all params and levels)
