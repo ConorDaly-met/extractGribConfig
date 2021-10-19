@@ -26,4 +26,5 @@ project( extractGribConfig LANGUAGES NONE )
 
 ################################################################################
 
+add_subdirectory (bin)
 add_subdirectory (share)
