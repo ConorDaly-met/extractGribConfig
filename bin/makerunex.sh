@@ -107,4 +107,8 @@ Output logfile in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/log/extractGrib_contr
 and in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/extractGribtest.o<NNNNN>
 and in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/extractGribtest.e<NNNNN> where NNNNN is the job ID.
 
+The following command will get you a quick view of the results:
+
+   egrep 'INFILE|pppkey%shortname|OUTFILE|Loop|Status' $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/log/extractGrib_control_${DTG}_${STEP}.log
+
 OUTT
