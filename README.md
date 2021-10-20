@@ -9,13 +9,15 @@ Contains the configuration files required for the **extractGrib** software
 
 ### Author
 Conor Daly
-Met Éireann
 <conor.daly@met.ie>
+
+Met Éireann
 
 ### Installation
 
-The default installation path is $HOME/extractGribConfig/$EXP
-but on ecgate it needs to be /hpc$HOME/extractGribConfig/$EXP
+The default installation path is ```$HOME/extractGribConfig/$EXP```
+
+but on ecgate it needs to be ```/hpc$HOME/extractGribConfig/$EXP```
 
 - `git clone` this repo
 -       ```
@@ -41,7 +43,19 @@ but on ecgate it needs to be /hpc$HOME/extractGribConfig/$EXP
  	under /path/to/installation/$EXP
 
 - [Populate](#setup) with parameter lists, sub-domains/projections, griblists
-- Create environment variable USERAREA pointing to your `share/griblists` (Default is `$HOME/extractGrib/$EXP/share/griblists`)
+- run makeparamlists.sh script to convert parameter lists to namelist fragments.
+    - ```/path/to/installation/bin/makeparamlists.sh```
+- Create environment variable USERAREA pointing to your `share/griblists` (Default is `$HOME/extractGribConfig/$EXP/share/griblists`)
+
+#### Testing
+
+Your installation is now ready for test.  
+
+- Create and cd to your extractGribFiles location 
+- Run the makerunex.sh script and follow instructions
+    - ```/path/to/installation/bin/makerunex.sh```
+      - if you do not set EXP, it will derive the value from the installation path.
+      - If you wish to test against a different harmonie experiment, set EXP appropriately.
 
 ### Workflow
 
@@ -320,7 +334,7 @@ This output should be saved to `share/namelist_inc/cccc/20-<proj>.inc` or `share
 
 	-I	ICMSHHARM... is the source FA file
 	-P	PFHARM... is the source FA file
-        -B      Both ICMSHHARM... and PFHARM... are the source FA files
+	-B      Both ICMSHHARM... and PFHARM... are the source FA files
 
 	-h	Show this help
 

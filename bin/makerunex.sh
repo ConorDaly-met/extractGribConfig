@@ -2,7 +2,15 @@
 
 # Extract EXP (if not set) from the expected path to this executable
 # Expected path is $HOME/extractGribConfig/<EXP>/bin/
-EXP=${EXP-$(basename $(dirname $(dirname $0)))}
+MYEXP=$(basename $(dirname $(dirname $0)))
+EXP=${EXP-$MYEXP}
+
+# Check for extractGrib scripts
+which extractGrib 2> /dev/null
+if [ $? -ne 0 ] ; then
+ echo "Error: extractGrib not found, please 'module load extractGrib' first" 
+ exit 1
+fi
 
 # Source the config_exp.h
 HM_LIB=$SCRATCH/hm_home/${EXP}/lib
@@ -10,11 +18,35 @@ source ${HM_LIB}/ecf/config_exp.h || exit 1
 
 # Check for sufficient data
 echo
-echo "<EXP> ${EXP}, <DOMAIN> ${DOMAIN} <DTG> ${DTG}"
+echo "EXP: ${EXP}    DOMAIN: ${DOMAIN}    DTG: ${DTG}"
 if [ -z "${DTG}" ]; then
     echo "Error, please set <DTG> before running this script"
     exit 1
 fi
+
+# create YYYY MM DD HH from DTG
+YYYY=$(echo $DTG | cut -c1-4)
+MM=$(echo $DTG | cut -c5-6)
+DD=$(echo $DTG | cut -c7-8)
+HH=$(echo $DTG | cut -c9-10)
+
+# Forecast path
+FCSTPATH=$SCRATCH/hm_home/${EXP}/archive/${YYYY}/${MM}/${DD}/${HH}
+if [ ! -d ${FCSTPATH} ]; then
+    echo "Error, $FCSTPATH does not exist"
+    exit 1
+fi
+
+# Pad ENSMBR and STEP (if set) with leading zeros to 3 digits
+if [ ! -z "${ENSMBR}" ]; then
+    ENSMBR=$(echo 00${ENSMBR} | sed -e 's/.*\([0-9][0-9][0-9]\)$/\1/')
+fi
+if [ ! -z "${STEP}" ]; then
+    STEP=$(echo 00${STEP} | sed -e 's/.*\([0-9][0-9][0-9]\)$/\1/')
+fi
+
+# Workpath
+WORKPATH=${WORKPATH-$(pwd)}
 
 # Build the runex.sh file
 cat > runex.sh << RUNEX
@@ -37,15 +69,11 @@ which gl
 export EXP=${EXP}
 export DOMAIN=${DOMAIN}
 export DTG=${DTG}
-export YYYY=$(echo $DTG | cut -c1-4)
-export   MM=$(echo $DTG | cut -c5-6)
-export   DD=$(echo $DTG | cut -c7-8)
-export   HH=$(echo $DTG | cut -c9-10)
-export FCSTPATH=\$SCRATCH/hm_home/${EXP}/archive/\${YYYY}/\${MM}/\${DD}/\${HH}
+export FCSTPATH=${FCSTPATH}
 export ENSMBR=${ENSMBR-000}
-export WORKPATH=\$SCRATCH/hm_home/${EXP}/archive/extractGribFiles
+export WORKPATH=${WORKPATH}
 export STEP=${STEP-000}
-EXTGRIBARGS=\${EXTGRIBARGS}
+EXTGRIBARGS=${EXTGRIBARGS}
 
 cd \$WORKPATH
 
@@ -68,8 +96,11 @@ and await output.  You can see its queue state:
 
 	qstat -u $USER
 
-Output logfile in $WORKPATH/log/extractGrib_control_${DTG}_${STEP}.log
-and in $WORKPATH/extractGribtest.o<NNNNN>
-and in $WORKPATH/extractGribtest.e<NNNNN> where NNNNN is the job ID.
+Forecast Source: $FCSTPATH
+Output         : $WORKPATH
+
+Output logfile in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/log/extractGrib_control_${DTG}_${STEP}.log
+and in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/extractGribtest.o<NNNNN>
+and in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/extractGribtest.e<NNNNN> where NNNNN is the job ID.
 
 OUTT
