@@ -2,7 +2,10 @@
 
 # Check for extractGrib scripts
 which extractGrib 2> /dev/null
-[ $? -eq 0 ] || echo "Error: extractGrib not found, please 'module load extractGrib' first" && exit 1
+if [ $? -ne 0 ]; then
+    echo "Error: extractGrib not found, please 'module load extractGrib' first" 
+    exit 1
+fi
 
 bindir=$(dirname $0)
 wrkdir=${bindir}/../
