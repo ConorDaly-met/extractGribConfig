@@ -2,8 +2,12 @@
 
 # Extract EXP (if not set) from the expected path to this executable
 # Expected path is $HOME/extractGribConfig/<EXP>/bin/
-MYEXP=$(basename $(dirname $(dirname $0)))
+EXPATH=$(dirname $(dirname $0))
+MYEXP=$(basename ${EXPATH})
 EXP=${EXP-$MYEXP}
+
+# Set USERAREA from EXPATH
+USERAREA="-a ${EXPATH}/share/griblists"
 
 # Check for extractGrib scripts
 which extractGrib 2> /dev/null
@@ -78,7 +82,7 @@ EXTGRIBARGS=${EXTGRIBARGS}
 cd \$WORKPATH
 
 export MPPGL="mpiexec -n \$EC_total_tasks"
-/usr/bin/time -v $(which extractGrib) \$EXTGRIBARGS 
+/usr/bin/time -v $(which extractGrib) ${USERAREA} \$EXTGRIBARGS 
 RUNEX
 
 # Make the runex.sh executable
