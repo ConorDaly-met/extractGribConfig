@@ -11,15 +11,15 @@
 # Parameter list and Projection/sub-domain entries must exist in share/namelist_inc/centre/
 #grib_extension     -C centre -g grib1|2 -k packingType  -p Parameter list -r Projection|sub-domain
 #grib2_ie     -C eidb -g 2 -k ccsds             -x exclude-hybrid
-grib2_ml     -C eidb -g 2 -k ccsds  -p ml_B-b
-MEMORY       -C eidb -T             -p pp_B-p
-grib2_pp     -C eidb -g 2 -k ccsds  -p pp_B-b
-memory       -C eidb -T             -p ie_B-p
-grib2_ie     -C eidb -g 2 -k ccsds  -p ie_B-b
+#grib2_ml     -C eidb -g 2 -k ccsds  -p ml_B-b
+#MEMORY       -C eidb -T             -p pp_B-p
+#grib2_pp     -C eidb -g 2 -k ccsds  -p pp_B-b
+#memory       -C eidb -T             -p ie_B-p
+#grib2_ie     -C eidb -g 2 -k ccsds  -p ie_B-b
 grib2_IE-FIR-avi   -C eidb -g 2 -k ccsds  -p ml_aviation_B-b -r IRELAND-FIR
 #memory       -C eidb -T             -p rt_B-p
 #grib_rt      -C eidb      -k simple -p rt_B-b
-memory       -C eidb -T             -p ep_B-p
-grib2_ep     -C eidb -g 2 -k ccsds  -p ep_B-b -r IRELAND25
-memory       -C eidb -T             -p hy_B-p
-grib_hy      -C eidb -g 1 -k simple -p hy_B-b -r IRELAND25
+#memory       -C eidb -T             -p ep_B-p
+#grib2_ep     -C eidb -g 2 -k ccsds  -p ep_B-b -r IRELAND25
+#memory       -C eidb -T             -p hy_B-p
+#grib_hy      -C eidb -g 1 -k simple -p hy_B-b -r IRELAND25
