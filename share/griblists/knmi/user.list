@@ -11,6 +11,8 @@
 # Note that <grib_extension> in this list will result in output filenames of the form: 
 # 	fcYYYYMMDDHH+SSS.USER_grib_extension
 # This is intended to avoid accidental collision with entries from the standing.list. 
-MEMORY       -C knmi -T             -p en_B-p
-grib2_enNL   -C knmi -g 2 -k ccsds  -p en_B-b -r NL
+#
+# Temporarily suspend generation.
+#MEMORY       -C knmi -T             -p allparm_B-p
+#grib2_enNL   -C knmi -g 2 -k ccsds  -p allparm_B-b -r NL
 
