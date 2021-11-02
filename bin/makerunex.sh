@@ -5,9 +5,15 @@
 EXPATH=$(dirname $(dirname $0))
 MYEXP=$(basename ${EXPATH})
 EXP=${EXP-$MYEXP}
+CENTRE=${CENTRE}
 
-# Set USERAREA from EXPATH
-USERAREA="-a ${EXPATH}/share/griblists"
+if [ -z "${CENTRE}" ]; then
+    # Set USERAREA from EXPATH
+    USERAREA="-a ${EXPATH}/share/griblists"
+else
+    # Set USERAREA from EXPATH
+    USERAREA="-a ${EXPATH}/share/griblists/${CENTRE}"
+fi
 
 # Check for extractGrib scripts
 which extractGrib 2> /dev/null
@@ -101,7 +107,7 @@ and await output.  You can see its queue state:
 	qstat -u $USER
 
 Forecast Source: $FCSTPATH
-Output         : $WORKPATH
+Output         : $WORKPATH/${CENTRE}
 
 Output logfile in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/log/extractGrib_control_${DTG}_${STEP}.log
 and in $(echo $WORKPATH | sed -e "s@$(pwd)@.@")/extractGribtest.o<NNNNN>
