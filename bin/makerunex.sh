@@ -40,11 +40,17 @@ MM=$(echo $DTG | cut -c5-6)
 DD=$(echo $DTG | cut -c7-8)
 HH=$(echo $DTG | cut -c9-10)
 
-# Forecast path
-FCSTPATH=$SCRATCH/hm_home/${EXP}/archive/${YYYY}/${MM}/${DD}/${HH}
+# Forecast path comes either from an environment var or is derived from SCRATCH, EXP, DTG
+FCSTPATH=${FCSTPATH-$SCRATCH/hm_home/${EXP}/archive/${YYYY}/${MM}/${DD}/${HH}}
 if [ ! -d ${FCSTPATH} ]; then
     echo "Error, $FCSTPATH does not exist"
     exit 1
+else
+# FCSTPATH must be absolute
+    FSLASH=$(echo $FCSTPATH | cut -c1)
+    if [ "${FSLASH}" != "/" ]; then
+        FCSTPATH=$(pwd)/${FCSTPATH}
+    fi
 fi
 
 # Pad ENSMBR and STEP (if set) with leading zeros to 3 digits
